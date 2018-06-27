@@ -1,0 +1,30 @@
+---
+title: "Learning Plan"
+subtitle: Summer 2018
+---
+
+
+
+```{r echo = FALSE, message = FALSE, warning = FALSE}
+library(tidyverse)
+library(knitr)
+library(DT)
+plan <- read_csv("plan.csv") %>%
+  mutate(Date = paste(Month, Day)) %>% 
+  select(Weekday, Date, Reading, DataCamp)
+```
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+if(knitr:::is_html_output()){
+  plan %>% datatable(rownames = FALSE,
+                         class = 'cell-border stripe',
+                         filter = list(position = 'top'),
+                         options = list(pageLength = nrow(cm), 
+                                        autoWidth = TRUE,
+                                        bInfo = FALSE,
+                                        paging = FALSE),
+                         escape = FALSE)
+} else {
+  knitr::kable(plan, booktabs = TRUE, longtable = TRUE)
+}
+```

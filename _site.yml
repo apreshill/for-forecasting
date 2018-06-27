@@ -1,0 +1,15 @@
+name: Independent Study in Forecasting
+output_dir: '.'
+navbar:
+  title: Independent Study in Forecasting
+  type: inverse
+  left:
+  - text: Learning Plan
+    href: plan.html
+    icon: fa-chalkboard-teacher
+output:
+  html_document:
+    theme: flatly
+    lib_dir: site_libs
+    self_contained: no
+
