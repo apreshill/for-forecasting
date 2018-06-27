@@ -4,7 +4,7 @@ Repo for independent study on forecasting following Hyndman &amp; Athanasopoulos
 # Resources
 
 - A web variant of the book can be found here: https://otexts.org/fpp2/
-- A print variant can be found here: https://www.amazon.com/dp/0987507117?tag=otexts-20https://www.amazon.com/dp/0987507117?tag=otexts-20
+- A print variant can be found here: https://www.amazon.com/dp/0987507117?tag=otexts-20
 - `fable` package: https://github.com/tidyverts/fable
 - Course materials with slides: https://github.com/robjhyndman/ETC3550Slides
 - `fpp2` package: http://pkg.robjhyndman.com/fpp2-package/
