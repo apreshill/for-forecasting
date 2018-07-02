@@ -218,6 +218,14 @@ devtools::install_github(&quot;robjhyndman/fpp2-package&quot;)</code></pre>
 <p>Also <code>sweep</code>: <a href="http://www.business-science.io/code-tools/2017/07/09/sweep-0-1-0.html" class="uri">http://www.business-science.io/code-tools/2017/07/09/sweep-0-1-0.html</a></p>
 <p>And <code>timetk</code>: <a href="https://business-science.github.io/timetk/" class="uri">https://business-science.github.io/timetk/</a></p>
 <p>And this post: <a href="https://community.rstudio.com/t/how-do-you-do-time-series-forecasting-best-practices-tidy-ways-etc/4315/3" class="uri">https://community.rstudio.com/t/how-do-you-do-time-series-forecasting-best-practices-tidy-ways-etc/4315/3</a></p>
+<p>Blog post from Ogi using <code>pandas</code>: <a href="https://tomaugspurger.github.io/modern-7-timeseries" class="uri">https://tomaugspurger.github.io/modern-7-timeseries</a></p>
+<p>Possible time series data to work with?</p>
+<ul>
+<li><a href="https://github.com/awesomedata/awesome-public-datasets#timeseries" class="uri">https://github.com/awesomedata/awesome-public-datasets#timeseries</a></li>
+<li><a href="https://cascadiarconf.com/agenda/#craggy" class="uri">https://cascadiarconf.com/agenda/#craggy</a></li>
+<li><a href="https://github.com/WatanabeSmith/BIKETOWN_CascadiaR" class="uri">https://github.com/WatanabeSmith/BIKETOWN_CascadiaR</a></li>
+<li><a href="https://github.com/cwickham/cRaggy" class="uri">https://github.com/cwickham/cRaggy</a></li>
+</ul>
 <pre class="r"><code>library(fpp2)</code></pre>
 <p>This loads <code>ggplot2</code> and <code>forecast</code>.</p>
 <pre class="r"><code>autoplot(melsyd[,&quot;Economy.Class&quot;]) +
@@ -227,7 +235,6 @@ devtools::install_github(&quot;robjhyndman/fpp2-package&quot;)</code></pre>
 <p><img src="02-tsgraphics_files/figure-html/unnamed-chunk-3-1.png" width="2100" /></p>
 <p><code>autoplot</code> function sort of just thrown at us. I’m guessing it is loaded in the <code>fpp2</code> package? Nope- looks like mainly data in there: <a href="https://github.com/robjhyndman/fpp2-package/tree/master/man" class="uri">https://github.com/robjhyndman/fpp2-package/tree/master/man</a></p>
 <p>OK google says the <code>ggfortify</code> package: <a href="https://cran.r-project.org/web/packages/ggfortify/vignettes/plot_ts.html" class="uri">https://cran.r-project.org/web/packages/ggfortify/vignettes/plot_ts.html</a></p>
-<pre class="r"><code>library(ggfortify)</code></pre>
 <p>Nope! You can do <code>?autoplot</code> and one of the options is from the <code>ggplot2</code> package. Help docs say (using <code>printr</code> from <a href="https://yihui.name/printr/">Yihui</a>):</p>
 <pre class="r"><code>library(printr)
 # ??autoplot
@@ -379,6 +386,7 @@ melsyd_timetk_index &lt;- tk_index(melsyd_ts_timetk, timetk_idx = TRUE)
 head(melsyd_timetk_index)</code></pre>
 <pre><code>[1] 1987.481 1987.500 1987.519 1987.538 1987.558 1987.577</code></pre>
 <p>lag plots- what the hell am I looking at? Is one bad plot worse than another bad plot? origami cranes plot</p>
+<p>Note that you can use non-integer frequencies to make <code>ts</code> objects using <code>lubridate</code>: <a href="https://stackoverflow.com/questions/22188660/r-time-series-modeling-on-weekly-data-using-ts-object" class="uri">https://stackoverflow.com/questions/22188660/r-time-series-modeling-on-weekly-data-using-ts-object</a></p>
 
 
 

@@ -27,6 +27,15 @@ And `timetk`: https://business-science.github.io/timetk/
 And this post:
 https://community.rstudio.com/t/how-do-you-do-time-series-forecasting-best-practices-tidy-ways-etc/4315/3
 
+Blog post from Ogi using `pandas`: https://tomaugspurger.github.io/modern-7-timeseries
+
+Possible time series data to work with?
+
+- https://github.com/awesomedata/awesome-public-datasets#timeseries
+- https://cascadiarconf.com/agenda/#craggy
+  - https://github.com/WatanabeSmith/BIKETOWN_CascadiaR
+  - https://github.com/cwickham/cRaggy
+
 
 ```{r}
 library(fpp2)
@@ -45,9 +54,6 @@ autoplot(melsyd[,"Economy.Class"]) +
 
 OK google says the `ggfortify` package:
 https://cran.r-project.org/web/packages/ggfortify/vignettes/plot_ts.html
-```{r}
-library(ggfortify)
-```
 
 Nope! You can do `?autoplot` and one of the options is from the `ggplot2` package. Help docs say (using `printr` from [Yihui](https://yihui.name/printr/)):
 
@@ -89,3 +95,7 @@ head(melsyd_timetk_index)
 lag plots- what the hell am I looking at?
 Is one bad plot worse than another bad plot?
 origami cranes plot
+
+Note that you can use non-integer frequencies to make `ts` objects using `lubridate`:
+https://stackoverflow.com/questions/22188660/r-time-series-modeling-on-weekly-data-using-ts-object
+
