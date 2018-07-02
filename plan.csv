@@ -1,13 +1,13 @@
-Weekday,Month,Day,Reading,DataCamp
-Wed,June,27,Plan,
-Mon,July ,2,Ch1: Getting Started<br> Ch2: Time Series Graphics,DC1: Exploring and visualizing time series in R
-Wed,July,11,Ch3: The forecaster's toolbox,DC2: Benchmark methods and forecast accuracy
-Wed,July,18,Ch4: Judgmental forecasts,
-Wed,July,25,Ch5: Time series regression models,
-Wed,August,1,Ch6: Time series decomposition,
-Wed,August,8,Ch7: Exponential smoothing,DC3: Exponential smoothing
-Wed,August,15,Ch8: ARIMA models,DC4: Forecasting with ARIMA models
-Wed,August,22,Ch9: Dynamic regression models,DC5: Advanced methods
-Wed,August,29,Ch10: Forecasting hierarchical or grouped time series,
-Wed,September,5,Ch11: Advanced forecasting methods,
-Wed,September,12,Ch12: Some practical forecasting issues,
+Weekday,Month,Day,Reading,DataCamp,Notes
+Wed,June,27,Plan,,
+Mon,July ,2,Ch1: Getting Started<br>Ch2: Time Series Graphics,DC1: Exploring and visualizing time series in R,<a href='02-tsgraphics.html'>Chapter 2</a>
+Wed,July,11,Ch3: The forecaster's toolbox,DC2: Benchmark methods and forecast accuracy,
+Wed,July,18,Ch4: Judgmental forecasts,,
+Wed,July,25,Ch5: Time series regression models,,
+Wed,August,1,Ch6: Time series decomposition,,
+Wed,August,8,Ch7: Exponential smoothing,DC3: Exponential smoothing,
+Wed,August,15,Ch8: ARIMA models,DC4: Forecasting with ARIMA models,
+Wed,August,22,Ch9: Dynamic regression models,DC5: Advanced methods,
+Wed,August,29,Ch10: Forecasting hierarchical or grouped time series,,
+Wed,September,5,Ch11: Advanced forecasting methods,,
+Wed,September,12,Ch12: Some practical forecasting issues,,

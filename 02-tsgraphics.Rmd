@@ -1,9 +1,16 @@
 ---
-title: "02-tsgraphics"
+title: "Time Series Graphics"
+subtitle: "Based on Ch2"
 author: "Alison Hill"
 date: "July 2, 2018"
 output: html_document
 ---
+
+```{r setup, include=FALSE}
+options(knitr.table.format = "html") 
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, 
+  comment = NA, dpi = 300)
+```
 
 ```{r eval = FALSE}
 install.packages('fpp2', dependencies = TRUE)

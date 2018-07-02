@@ -12,7 +12,7 @@
 <meta name="author" content="Alison Hill" />
 
 
-<title>02-tsgraphics</title>
+<title>Time Series Graphics</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -203,7 +203,8 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">02-tsgraphics</h1>
+<h1 class="title toc-ignore">Time Series Graphics</h1>
+<h3 class="subtitle"><em>Based on Ch2</em></h3>
 <h4 class="author"><em>Alison Hill</em></h4>
 <h4 class="date"><em>July 2, 2018</em></h4>
 
@@ -215,43 +216,44 @@ $(document).ready(function () {
 devtools::install_github(&quot;robjhyndman/fpp2-package&quot;)</code></pre>
 <p>Note: I’m wondering if <a href="https://business-science.github.io/tibbletime/"><code>tibbletime</code></a> might also be a useful package for us (check out vignettes!)</p>
 <pre class="r"><code>library(fpp2)</code></pre>
-<pre><code>## Warning: package &#39;fpp2&#39; was built under R version 3.4.4</code></pre>
-<pre><code>## Loading required package: ggplot2</code></pre>
-<pre><code>## Loading required package: forecast</code></pre>
-<pre><code>## Warning: package &#39;forecast&#39; was built under R version 3.4.4</code></pre>
-<pre><code>## Loading required package: fma</code></pre>
-<pre><code>## Loading required package: expsmooth</code></pre>
 <p>This loads <code>ggplot2</code> and <code>forecast</code>.</p>
 <pre class="r"><code>autoplot(melsyd[,&quot;Economy.Class&quot;]) +
   ggtitle(&quot;Economy class passengers: Melbourne-Sydney&quot;) +
   xlab(&quot;Year&quot;) +
   ylab(&quot;Thousands&quot;)</code></pre>
-<p><img src="02-tsgraphics_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p><img src="02-tsgraphics_files/figure-html/unnamed-chunk-3-1.png" width="2100" /></p>
 <p><code>autoplot</code> function sort of just thrown at us. I’m guessing it is loaded in the <code>fpp2</code> package? Nope- looks like mainly data in there: <a href="https://github.com/robjhyndman/fpp2-package/tree/master/man" class="uri">https://github.com/robjhyndman/fpp2-package/tree/master/man</a></p>
 <p>OK google says the <code>ggfortify</code> package: <a href="https://cran.r-project.org/web/packages/ggfortify/vignettes/plot_ts.html" class="uri">https://cran.r-project.org/web/packages/ggfortify/vignettes/plot_ts.html</a></p>
 <pre class="r"><code>library(ggfortify)</code></pre>
-<pre><code>## 
-## Attaching package: &#39;ggfortify&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:forecast&#39;:
-## 
-##     gglagplot</code></pre>
 <p>Nope! You can do <code>?autoplot</code> and one of the options is from the <code>ggplot2</code> package. Help docs say (using <code>printr</code> from <a href="https://yihui.name/printr/">Yihui</a>):</p>
 <pre class="r"><code>library(printr)
 # ??autoplot
 help.search(&#39;autoplot&#39;, package = &#39;ggplot2&#39;)</code></pre>
 <table>
 <thead>
-<tr class="header">
-<th align="left">Package</th>
-<th align="left">Topic</th>
-<th align="left">Title</th>
+<tr>
+<th style="text-align:left;">
+Package
+</th>
+<th style="text-align:left;">
+Topic
+</th>
+<th style="text-align:left;">
+Title
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="left">ggplot2</td>
-<td align="left">autoplot</td>
-<td align="left">Create a complete ggplot appropriate to a particular data type</td>
+<tr>
+<td style="text-align:left;">
+ggplot2
+</td>
+<td style="text-align:left;">
+autoplot
+</td>
+<td style="text-align:left;">
+Create a complete ggplot appropriate to a particular data type
+</td>
 </tr>
 </tbody>
 </table>

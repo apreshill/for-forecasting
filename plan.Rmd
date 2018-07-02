@@ -11,7 +11,7 @@ library(knitr)
 library(DT)
 plan <- read_csv("plan.csv") %>%
   mutate(Date = paste(Month, Day)) %>% 
-  select(Weekday, Date, Reading, DataCamp)
+  select(Weekday, Date, Reading, DataCamp, Notes)
 ```
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
