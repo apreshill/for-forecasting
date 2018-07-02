@@ -20,6 +20,14 @@ devtools::install_github("robjhyndman/fpp2-package")
 
 Note: I'm wondering if [`tibbletime`](https://business-science.github.io/tibbletime/) might also be a useful package for us (check out vignettes!)
 
+Also `sweep`: http://www.business-science.io/code-tools/2017/07/09/sweep-0-1-0.html
+
+And `timetk`: https://business-science.github.io/timetk/
+
+And this post:
+https://community.rstudio.com/t/how-do-you-do-time-series-forecasting-best-practices-tidy-ways-etc/4315/3
+
+
 ```{r}
 library(fpp2)
 ```
@@ -51,3 +59,33 @@ help.search('autoplot', package = 'ggplot2')
 
 So it is available because `fpp2` loads `ggplot2`. Moving on 😉
 
+Back to the syntax- `melsyd` is a time series object, so `dplyr::glimpse` does not work :(
+
+```{r}
+library(dplyr)
+glimpse(melsyd)
+# this does work
+head(melsyd)
+```
+
+OMG converting `ts` objects to other types is such a PITA.
+https://business-science.github.io/timetk/articles/TK00_Time_Series_Coercion.html
+
+> "The ts object class has roots in the stats package and many popular packages use this time series data structure including the popular forecast package. With that said, the ts data structure is the most difficult to coerce back and forth because by default it does not contain a time-based index. Rather it uses a regularized index computed using the start and frequency arguments. Coercion to ts is done using the ts() function from the stats library, which results in various problems."
+
+
+```{r}
+library(tidyverse)
+library(timetk)
+# ts to tibble: Comparison between as.data.frame() and tk_tbl()
+melsyd_ts_timetk <- tk_ts(melsyd, start = c(1987, 26), freq = 52)
+head(melsyd_ts_timetk)
+# now we see the time index, still an unnamed column
+# Can now retrieve the original date index
+melsyd_timetk_index <- tk_index(melsyd_ts_timetk, timetk_idx = TRUE)
+head(melsyd_timetk_index)
+```
+
+lag plots- what the hell am I looking at?
+Is one bad plot worse than another bad plot?
+origami cranes plot
