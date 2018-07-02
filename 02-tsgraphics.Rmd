@@ -1,0 +1,46 @@
+---
+title: "02-tsgraphics"
+author: "Alison Hill"
+date: "July 2, 2018"
+output: html_document
+---
+
+```{r eval = FALSE}
+install.packages('fpp2', dependencies = TRUE)
+# install.packages("devtools")
+devtools::install_github("robjhyndman/fpp2-package")
+```
+
+Note: I'm wondering if [`tibbletime`](https://business-science.github.io/tibbletime/) might also be a useful package for us (check out vignettes!)
+
+```{r}
+library(fpp2)
+```
+
+This loads `ggplot2` and `forecast`.
+
+```{r}
+autoplot(melsyd[,"Economy.Class"]) +
+  ggtitle("Economy class passengers: Melbourne-Sydney") +
+  xlab("Year") +
+  ylab("Thousands")
+```
+
+`autoplot` function sort of just thrown at us. I'm guessing it is loaded in the `fpp2` package? Nope- looks like mainly data in there: https://github.com/robjhyndman/fpp2-package/tree/master/man
+
+OK google says the `ggfortify` package:
+https://cran.r-project.org/web/packages/ggfortify/vignettes/plot_ts.html
+```{r}
+library(ggfortify)
+```
+
+Nope! You can do `?autoplot` and one of the options is from the `ggplot2` package. Help docs say (using `printr` from [Yihui](https://yihui.name/printr/)):
+
+```{r}
+library(printr)
+# ??autoplot
+help.search('autoplot', package = 'ggplot2')
+```
+
+So it is available because `fpp2` loads `ggplot2`. Moving on 😉
+
