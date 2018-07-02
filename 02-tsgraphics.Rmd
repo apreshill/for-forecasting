@@ -18,11 +18,14 @@ install.packages('fpp2', dependencies = TRUE)
 devtools::install_github("robjhyndman/fpp2-package")
 ```
 
-Note: I'm wondering if [`tibbletime`](https://business-science.github.io/tibbletime/) might also be a useful package for us (check out vignettes!)
+Packages that may be useful:
 
-Also `sweep`: http://www.business-science.io/code-tools/2017/07/09/sweep-0-1-0.html
+- [`tibbletime`](https://business-science.github.io/tibbletime/) might also be a useful package for us (check out vignettes!)
+    - [Len Kiefer blog post](http://lenkiefer.com/2017/10/09/what-time-is-it-time-for-tibbletime/)
 
-And `timetk`: https://business-science.github.io/timetk/
+- [`sweep`](http://www.business-science.io/code-tools/2017/07/09/sweep-0-1-0.html)
+
+- [`timetk`](https://business-science.github.io/timetk/)
 
 And this post:
 https://community.rstudio.com/t/how-do-you-do-time-series-forecasting-best-practices-tidy-ways-etc/4315/3
@@ -33,8 +36,8 @@ Possible time series data to work with?
 
 - https://github.com/awesomedata/awesome-public-datasets#timeseries
 - https://cascadiarconf.com/agenda/#craggy
-  - https://github.com/WatanabeSmith/BIKETOWN_CascadiaR
-  - https://github.com/cwickham/cRaggy
+    - https://github.com/WatanabeSmith/BIKETOWN_CascadiaR
+    - https://github.com/cwickham/cRaggy
 
 
 ```{r}
