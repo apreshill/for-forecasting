@@ -1,0 +1,142 @@
+---
+title: "dc-ch1-notes"
+author: "Alison Hill"
+date: "7/27/2018"
+output: html_document
+---
+
+This course: only regularly spaced interval time series
+
+Definition: forecasting the method for estimating how a sequence of observations will continue into the future.
+
+## Creating a `ts` object
+
+Note: this part seems relatively easy, it's the other way that is a PITA.
+
+In the sample code, `=` is used as the assignment operator (I think?)
+
+I guess we assume this data is sorted by date already?
+
+You also need to know to use the colon operator to select a range of columns by position.
+
+## Time series plots
+
+That *damn* `autoplot` function again! I think it needs to be said it is in the `ggplot2` package, since there are several same-named functions.
+
+May pull up this data from `forecast`:
+
+- `gold` containing gold prices in US dollars
+- `woolyrnq` containing information on the production of woollen yarn in Australia
+- `gas` containing Australian gas production
+
+```{r}
+library(forecast)
+```
+
+Oh ok `autoplot` with `facets = TRUE` expects multiple time series "streams", so they all get stacked on top of each other. So, data doesn't have to be "tidy" to facet.
+
+```{r}
+autoplot(gold)
+autoplot(woolyrnq)
+autoplot(gas)
+```
+
+
+The `frequency()` function returns the number of observations per unit time.
+
+```{r}
+frequency(gold)
+frequency(woolyrnq)
+frequency(gas)
+```
+
+
+## Seasonal plots
+
+Text: https://otexts.org/fpp2/seasonal-plots.html
+https://otexts.org/fpp2/seasonal-subseries-plots.html
+
+
+Ooh `ggseasonplot()`?
+
+Data from `fpp2`: `a10` and `ausbeer`
+
+```{r}
+library(fpp2)
+autoplot(a10)
+ggseasonplot(a10)
+ggseasonplot(a10, polar = TRUE)
+```
+
+Looks like this is how one `filter`s on time:
+```{r}
+# Restrict the ausbeer data to start in 1992
+beer <- window(ausbeer, start = 1992)
+
+# Make plots of the beer data
+autoplot(beer)
+ggsubseriesplot(beer)
+```
+
+# Time series patterns
+
+Text: https://otexts.org/fpp2/tspatterns.html
+
+Trends are long-term
+Seasonality refers to periodic patterns
+Cyclic patterns
+
+
+
+## Autocorrelation of non-seasonal time series
+
+Text: https://otexts.org/fpp2/lag-plots.html
+https://otexts.org/fpp2/autocorrelation.html
+
+`oil` from `fpp2`
+
+```{r}
+# Create an autoplot of the oil data
+autoplot(oil)
+
+# Create a lag plot of the oil data
+gglagplot(oil)
+
+# Create an ACF plot of the oil data
+ggAcf(oil)
+```
+
+What the heck am I looking at?
+
+Last plot I think y-axis is strength of correlation, imaginary range -1 to 1. Height of sticks is just showing me the number. I don't know what the blue lines are? Read docs, still don't know. Ah:
+https://stats.stackexchange.com/questions/49571/understanding-the-blue-dotted-lines-in-an-acf-from-r
+
+From text now I found the section:
+"The dashed blue lines indicate whether the correlations are significantly different from zero."
+
+If "All of the autocorrelation coefficients lie within these limits, confirming that the data are white noise."
+
+Oh ok later on in "white noise" video, this gets explained.
+
+## Autocorrelation of seasonal and cyclic time series
+
+Data:
+https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/sunspot.year.html
+
+```{r}
+# Plot the annual sunspot numbers
+autoplot(sunspot.year)
+ggAcf(sunspot.year)
+```
+
+Ah this exercise totally confused me- you are not expected to calculate the maximum lag using r, but rather just eyeball the value of the lag on the x-axis associated with max y, then enter that as a constant. Weird?
+
+The next mc exercise was a little like "what"? So far I've been looking at plots and hoping we'll get to interpret, so I just kept guessing.
+
+# White noise
+
+## Stock prices and white noise
+
+new `diff` function does what in this context? oh right lagged differences, base version of `dplyr::lag`.
+
+

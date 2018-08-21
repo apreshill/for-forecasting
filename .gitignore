@@ -2,3 +2,5 @@
 .Rhistory
 .RData
 .Ruserdata
+.httr-oauth
+eve_dump.csv

@@ -1,0 +1,55 @@
+---
+title: '03'
+author: "Alison Hill"
+date: "August 21, 2018"
+output: html_document
+---
+
+```{r}
+library(tidyverse)
+library(tsibble)
+library(forecast)
+```
+
+
+```{r}
+agg <- read_csv(here::here("aggregated_df.csv"))
+```
+
+
+```{r}
+ggplot(agg, aes(x = cron_datetime, y = ship_kills)) +
+  geom_line()
+```
+
+Coerce?
+
+```{r}
+eve_tsbl <- as_tsibble(agg, key = id(), index = cron_datetime)
+eve_tsbl
+```
+
+`cron_datetime` is greenwich mean time
+
+```{r}
+eve_tsbl %>%
+  index_by(date = as_date(cron_datetime)) %>% 
+  summarise(
+    kills_high = max(ship_kills, na.rm = TRUE),
+    kills_low = min(ship_kills, na.rm = TRUE)
+  )
+```
+
+```{r}
+eve_tsbl %>% 
+  select(cron_datetime, ship_kills) %>% 
+  #ETS(log(ship_kills)) %>% 
+  forecast 
+
+
+eve_ts <- ts(agg, start = c(2017, 11), end = c(2018, 07), frequency = 24)
+autoplot(eve_ts[,"ship_kills"])
+```
+
+from stats.models
+

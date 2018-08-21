@@ -1,0 +1,80 @@
+---
+title: "eve-online-data"
+author: "Alison Hill"
+date: "July 23, 2018"
+output: html_document
+---
+
+```{r}
+library(googledrive)
+drive_auth(oauth_token = NULL)
+```
+
+```{r}
+drive_find(q = "fullText contains 'navitron_navitron-system-stats_2018-07-17.csv'")
+```
+
+```{r}
+eve_id <- as_id("https://drive.google.com/open?id=1dD9zly6mD51IX79O3Tg1hwfqGskExQvt")
+eve <- drive_download(file = eve_id, path = "eve_dump.csv")
+```
+
+other 3 ones:
+
+* sde-universe_2018-07-16.csv
+* navitron_navitron-server-status_2018-07-17.csv
+
+```{r}
+library(tidyverse)
+eve_dump <- read_csv("eve_dump.csv")
+```
+
+npc_kills = non-player combatant
+ship_kills = you can to blow up others' ships (hard)
+ship_jumps = number of ships that entered in the last hour (but updated every 15 min)
+pod_kills = you want to blow up others' ships + escape pods (harder)
+system_id = unique identifier (geographic region within the game)
+
+every combination of cron_datetime + system_id is a unique row
+cron_datetime is every 15 min
+
+```{r}
+eve_dump <- eve_dump %>% 
+  arrange(cron_datetime) %>% 
+  group_by(system_id) %>% 
+  mutate(dt_diff = cron_datetime - lag(cron_datetime))
+```
+
+filter on system_id 30002718- "a lot of pirates hang out here"
+A system you expect a high number of kills, a lot of cyclic behavior
+
+```{r}
+eve_rancer <- eve_dump %>% 
+  filter(system_id == "30002718")
+```
+
+```{r}
+ggplot(eve_rancer, aes(x = cron_datetime, y = ship_kills)) +
+  geom_line() 
+```
+
+focus in on one week, one month plots
+```{r}
+eve_rancer %>% 
+  filter(cron_datetime > "2018-07-01") %>% 
+  ggplot(., aes(x = cron_datetime, y = ship_kills)) +
+  geom_line() 
+```
+
+what to do with those missing hours?
+
+```{r}
+library(lubridate)
+want_rancer <- eve_rancer %>%  
+  ungroup() %>%
+  mutate(time_stamp = round_date(cron_datetime, unit = "hour")) %>% 
+  complete(nesting(system_id), 
+           time_stamp = seq(min(time_stamp), max(time_stamp), 
+                      by = "hour"))
+```
+
